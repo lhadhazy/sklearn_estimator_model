@@ -5,7 +5,8 @@ Created on Mar 12, 2019
 '''
 from sklearn.base import TransformerMixin
 
-class ColumnSelector(TransformerMixin): 
+
+class ColumnSelector(TransformerMixin):
 
     def __init__(self, columns):
         self.columns = columns

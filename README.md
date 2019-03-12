@@ -1,2 +1,2 @@
 # Scikit-learn Estimator model
-OO-approach to custom scikit-learn estimator creation
+OO-approach to create custom estimator leveraging scikit-learn's API design 
