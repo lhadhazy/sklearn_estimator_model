@@ -1,4 +1,5 @@
 '''
+Linear Discriminant Analysis transformer
 Created on Mar 12, 2019
 
 @author: lhadhazy
@@ -7,7 +8,7 @@ from sklearn.base import TransformerMixin
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 
-class LDA(TransformerMixin):  # 5
+class LDA(TransformerMixin):
 
     def __init__(self, n_features):
         self.n_features = n_features
