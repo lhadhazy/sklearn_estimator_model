@@ -1,5 +1,5 @@
 '''
-Linear Discriminant Analysis transformer
+Linear Discriminant Analysis Transformer
 Created on Mar 12, 2019
 
 @author: lhadhazy
