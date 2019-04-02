@@ -1,21 +1,25 @@
 from sklearn.base import ClassifierMixin, BaseEstimator
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import LinearSVC
 from sklearn.pipeline import make_pipeline
 from TransformerModel.StandardScaler import StandardScaler
 from TransformerModel.NullColumnCleanse import NullColumnCleanse
 from TransformerModel.LDATransformer import LDA
 
 
-# Decision tree classifier decorator class
-class CompositeDTEstimator(BaseEstimator, ClassifierMixin):
+# LinearSVC classifier decorator class
+class CompositeSVCEstimator(BaseEstimator, ClassifierMixin):
 
-    def __init__(self, estimator=DecisionTreeClassifier(random_state=0)):
-        self.decorated_estimator = estimator
+    def __init__(self, class_weight='balanced', max_iter=10000):
+        self.decorated_estimator = LinearSVC(class_weight=class_weight,
+                                             max_iter=1)
+
+        self.class_weight = class_weight
+        self.max_iter = max_iter
         self.trained_estimator_ = None
         self.transform_steps = [
             NullColumnCleanse(),
             StandardScaler(),
-            LDA(3)
+            LDA(1)
             ]
 
     def fit(self, X, y):
