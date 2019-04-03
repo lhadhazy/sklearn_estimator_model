@@ -1,25 +1,22 @@
 from sklearn.base import ClassifierMixin, BaseEstimator
-from sklearn.svm import LinearSVC
+from sklearn import linear_model
 from sklearn.pipeline import make_pipeline
 from TransformerModel.StandardScaler import StandardScaler
 from TransformerModel.NullColumnCleanse import NullColumnCleanse
 from TransformerModel.LDATransformer import LDA
 
 
-# LinearSVC classifier decorator class
-class CompositeLinearSVCEstimator(BaseEstimator, ClassifierMixin):
+# Random Forest classifier decorator class
+class CompositeSGDEstimator(BaseEstimator, ClassifierMixin):
 
-    def __init__(self, class_weight='balanced', max_iter=10000):
-        self.decorated_estimator = LinearSVC(class_weight=class_weight,
-                                             max_iter=1)
-
-        self.class_weight = class_weight
-        self.max_iter = max_iter
+    def __init__(self, n_estimators=100):
+        self.decorated_estimator = linear_model.SGDClassifier(
+            max_iter=10000, penalty='l1')
         self.trained_estimator_ = None
         self.transform_steps = [
             NullColumnCleanse(),
             StandardScaler(),
-            LDA(1)
+            LDA(3)
             ]
 
     def fit(self, X, y):
